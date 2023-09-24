@@ -15,4 +15,4 @@ RUN npm install package.json && npm cache clean --force
 
 COPY . /usr/src/app
 
-CMD [ "npm","start"]
+CMD [ "npm",".scripts.start"]
