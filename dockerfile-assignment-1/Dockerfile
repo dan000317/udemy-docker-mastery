@@ -9,7 +9,7 @@ RUN apk add --no-cache tini
 
 RUN mkdir -p /usr/src/app 
 
-COPY package.json /usr/src/app/
+COPY package.json /usr/src/app/package.json
 
 RUN npm install package.json && npm cache clean --force
 
