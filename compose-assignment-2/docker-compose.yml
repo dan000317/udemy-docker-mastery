@@ -16,9 +16,8 @@ services:  # Define your Docker services/containers here
     image: mariadb
     environment:
       MARIADB_ROOT_PASSWORD: mypassword
-      MARIADB_USER: mariadb
+      MARIADB_USER: mariadb@172.25.0.1
       MARIADB_DATABASE: mariadb
-      MARIADB_ROOT_HOST: 192.168.11.10
     ports:
       - "3306:3306"
 
