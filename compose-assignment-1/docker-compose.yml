@@ -6,10 +6,10 @@ services:  # Define your Docker services/containers here
     ports:
       - "8080:80"  # Map host port 80 to container port 80
     volumes:
-      - /var/www/html/modules
-      - /var/www/html/profiles
-      - /var/www/html/sites
-      - /var/www/html/themes  # Mount a local directory into the container
+      - drupal-modules:/var/www/html/modules
+      - drupal-profiles:/var/www/html/profiles
+      - drupal-sites:/var/www/html/sites
+      - drupal-themes:/var/www/html/themes  # Mount a local directory into the container
   postgres:
     image: postgres:14
     environment:
@@ -18,3 +18,9 @@ services:  # Define your Docker services/containers here
       database: postgres
     ports:
       - "5432:5432"
+
+volumes:
+  drupal-modules:
+  drupal-profiles:
+  drupal-sites:
+  drupal-themes:
