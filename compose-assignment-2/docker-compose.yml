@@ -1,1 +1,26 @@
-# create your drupal and postgres config here, based off the last assignment
+version: '3'  # The version of Docker Compose syntax to use
+
+services:  # Define your Docker services/containers here
+  drupal:
+    image: drupal:9  # Docker image to use for this service
+    ports:
+      - "8080:80"  # Map host port 80 to container port 80
+    volumes:
+      - drupal-modules:/var/www/html/modules
+      - drupal-profiles:/var/www/html/profiles
+      - drupal-sites:/var/www/html/sites
+      - drupal-themes:/var/www/html/themes  # Mount a local directory into the container
+  mariadb:
+    image: mariadb
+    environment:
+      MARIADB_ROOT_PASSWORD: mypassword
+      user: mariadb
+      database: mariadb
+    ports:
+      - "3808:3808"
+
+volumes:
+  drupal-modules:
+  drupal-profiles:
+  drupal-sites:
+  drupal-themes:
