@@ -14,3 +14,5 @@ services:  # Define your Docker services/containers here
     image: postgres:14
     environment:
       POSTGRES_PASSWORD: mypassword
+    ports:
+      - "5432:5432"
