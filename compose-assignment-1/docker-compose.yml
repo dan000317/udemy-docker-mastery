@@ -1,0 +1,16 @@
+version: '3'  # The version of Docker Compose syntax to use
+
+services:  # Define your Docker services/containers here
+  drupal:
+    image: drupal:9  # Docker image to use for this service
+    ports:
+      - "8080:80"  # Map host port 80 to container port 80
+    volumes:
+      - /var/www/html/modules
+      - /var/www/html/profiles
+      - /var/www/html/sites
+      - /var/www/html/themes  # Mount a local directory into the container
+  postgres:
+    image: postgres:14
+    environment:
+      POSTGRES_PASSWORD: mypassword
