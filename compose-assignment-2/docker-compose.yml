@@ -19,7 +19,7 @@ services:  # Define your Docker services/containers here
       user: mariadb
       database: mariadb
     ports:
-      - "3808:3808"
+      - "3306:3306"
 
 volumes:
   drupal-modules:
