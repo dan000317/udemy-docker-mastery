@@ -21,7 +21,7 @@ services:  # Define your Docker services/containers here
     ports:
       - "3306:3306"
     volumes:
-      - drupal-data:/var/lib/mysql
+      - drupal-data:/var/lib/mysql/data
 
 volumes:
   drupal-modules:
