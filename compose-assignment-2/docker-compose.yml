@@ -20,9 +20,12 @@ services:  # Define your Docker services/containers here
       MARIADB_DATABASE: mariadb
     ports:
       - "3306:3306"
+    volumes:
+      - drupal-data:/var/lib/mysql
 
 volumes:
   drupal-modules:
   drupal-profiles:
   drupal-sites:
   drupal-themes:
+  drupal-data:
