@@ -15,10 +15,10 @@ services:  # Define your Docker services/containers here
   mariadb:
     image: mariadb
     environment:
-      MARIADB_ROOT_PASSWORD: mypassword
-      MARIADB_USER: mariadb
-      MARIADB_DATABASE: mariadb
-      MARIADB_ROOT_HOST: 192.168.11.10
+      - MARIADB_ROOT_PASSWORD=Pass@word1
+      - MARIADB_DATABASE=drupal
+      - MARIADB_USER=drupal
+      - MARIADB_PASSWORD=Pass@word1
     ports:
       - "3306:3306"
 
