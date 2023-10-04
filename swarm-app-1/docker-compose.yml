@@ -1,8 +1,11 @@
+version: 3.7
+
 networks:
   frontend:
     driver: overlay
   backend:
     driver: overlay
+    
 services:
   vote:
     image: bretfisher/examplevotingapp_vote
