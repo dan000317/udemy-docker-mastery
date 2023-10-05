@@ -13,11 +13,13 @@ services:  # Define your Docker services/containers here
 
   mariadb:
     image: mariadb
+    secrets:
+      - mdb-pw
     environment:
-      - MARIADB_ROOT_PASSWORD_FILE=mdb-pw
-      - MARIADB_DATABASE=drupal
-      - MARIADB_USER=drupal
-      - MARIADB_PASSWORD_FILE=mdb-pw
+      MARIADB_ROOT_PASSWORD_FILE: /run/secrets/mdb-pw
+      MARIADB_DATABASE: "drupal"
+      MARIADB_USER: "drupal"
+      MARIADB_PASSWORD_FILE: /run/secrets/mdb-pw
     ports:
       - "3306:3306"
     volumes:
@@ -31,4 +33,5 @@ volumes:
   drupal-data:
 
 secrets:
-  mdb-pw: ./pdb-pw
+  mdb-pw:
+    file: ./mdb-pw
