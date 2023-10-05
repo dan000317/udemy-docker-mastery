@@ -4,9 +4,17 @@ networks:
   frontend:
     driver: overlay
     attachable: true
+    ipam:
+      driver: default
+      config:
+        - subnet: 192.168.1.0/24
   backend:
     driver: overlay
     attachable: true
+    ipam:
+      driver: default
+      config:
+        - subnet: 192.168.2.0/24
     
 services:
   vote:
@@ -15,33 +23,23 @@ services:
       - "80:80"
     deploy:
       replicas: 2
-      placement:
-        constraints:
-          - node.hostname==worker1
     networks:
-      - frontend
+      frontend:
   
   redis:
     image: redis:3.2
     networks:
-      - frontend
+      frontend:
     deploy:
       replicas: 1
-      placement:
-        constraints:
-          - node.hostname==worker1    
     
   worker:
     image: bretfisher/examplevotingapp_worker
     networks:
-      - frontend
-      - backend
+      frontend:
+      backend:
     deploy:
       replicas: 1
-      placement:
-        constraints:
-          - node.hostname==worker1
-          - node.hostname==worker2
 
   db:
     image: postgres:9.4
@@ -50,24 +48,18 @@ services:
     environment:
       - POSTGRES_HOST_AUTH_METHOD=trust
     networks:
-      - backend
+      backend:
     deploy:
       replicas: 1
-      placement:
-        constraints:
-          - node.hostname==worker2
 
   results:
     image: bretfisher/examplevotingapp_result
     ports:
       - "5001:80"
     networks:
-      - backend
+      backend:
     deploy:
       replicas: 1
-      placement:
-        constraints:
-          - node.hostname==worker2
    
 volumes:
   votedb:
