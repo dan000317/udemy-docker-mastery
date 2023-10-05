@@ -1,4 +1,5 @@
-version: 3.7
+version: '3.7'
+
 
 networks:
   frontend:
@@ -55,7 +56,7 @@ services:
   results:
     image: bretfisher/examplevotingapp_result
     ports:
-      - "5001:80"
+      - "5001:81"
     networks:
       backend:
     deploy:
