@@ -5,6 +5,7 @@ networks:
   frontend:
     driver: overlay
     attachable: true
+    
     ipam:
       driver: default
       config:
@@ -21,7 +22,7 @@ services:
   vote:
     image: bretfisher/examplevotingapp_vote
     ports:
-      - "80:80"
+      - "8080:80"
     deploy:
       replicas: 2
     networks:
@@ -56,7 +57,7 @@ services:
   results:
     image: bretfisher/examplevotingapp_result
     ports:
-      - "5001:81"
+      - "5001:80"
     networks:
       backend:
     deploy:
