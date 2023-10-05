@@ -15,6 +15,9 @@ services:
       - "80:80"
     deploy:
       replicas: 2
+      placement:
+        constraints:
+          - node.hostname==worker1
     networks:
       - frontend
   
@@ -24,6 +27,9 @@ services:
       - frontend
     deploy:
       replicas: 1
+      placement:
+        constraints:
+          - node.hostname==worker1    
     
   worker:
     image: bretfisher/examplevotingapp_worker
@@ -32,6 +38,10 @@ services:
       - backend
     deploy:
       replicas: 1
+      placement:
+        constraints:
+          - node.hostname==worker1
+          - node.hostname==worker2
 
   db:
     image: postgres:9.4
@@ -43,6 +53,9 @@ services:
       - backend
     deploy:
       replicas: 1
+      placement:
+        constraints:
+          - node.hostname==worker2
 
   results:
     image: bretfisher/examplevotingapp_result
@@ -52,6 +65,9 @@ services:
       - backend
     deploy:
       replicas: 1
+      placement:
+        constraints:
+          - node.hostname==worker2
    
 volumes:
   votedb:
