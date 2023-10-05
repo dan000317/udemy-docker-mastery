@@ -22,9 +22,12 @@ services:
   vote:
     image: bretfisher/examplevotingapp_vote
     ports:
-      - "8080:80"
+      - "80:80"
     deploy:
       replicas: 2
+      placement:
+        constraints:
+          - node.hostname == worker1
     networks:
       frontend:
   
@@ -34,7 +37,9 @@ services:
       frontend:
     deploy:
       replicas: 1
-    
+      placement:
+        constraints:
+          - node.hostname == worker1    
   worker:
     image: bretfisher/examplevotingapp_worker
     networks:
@@ -42,6 +47,9 @@ services:
       backend:
     deploy:
       replicas: 1
+      placement:
+        constraints:
+          - node.hostname == manager
 
   db:
     image: postgres:9.4
@@ -53,7 +61,9 @@ services:
       backend:
     deploy:
       replicas: 1
-
+      placement:
+        constraints:
+          - node.hostname == worker2
   results:
     image: bretfisher/examplevotingapp_result
     ports:
@@ -62,7 +72,9 @@ services:
       backend:
     deploy:
       replicas: 1
-   
+      placement:
+        constraints:
+          - node.hostname == worker2   
 volumes:
   votedb:
    
