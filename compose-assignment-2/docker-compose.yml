@@ -2,7 +2,7 @@ version: '3.7'  # The version of Docker Compose syntax to use
 
 services:  # Define your Docker services/containers here
   proxy:
-    image: drupal:8.2
+    image: drupal:9
     ports:
       - "8080:80"  # Map host port 80 to container port 80
     volumes:
