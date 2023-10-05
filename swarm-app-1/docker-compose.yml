@@ -3,8 +3,10 @@ version: 3.7
 networks:
   frontend:
     driver: overlay
+    attachable: true
   backend:
     driver: overlay
+    attachable: true
     
 services:
   vote:
