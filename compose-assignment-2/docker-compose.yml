@@ -1,10 +1,8 @@
-version: '3'  # The version of Docker Compose syntax to use
+version: '3.7'  # The version of Docker Compose syntax to use
 
 services:  # Define your Docker services/containers here
   proxy:
-    build:
-      context: .
-      dockerfile: drupal.Dockerfile
+    image: drupal:8.2
     ports:
       - "8080:80"  # Map host port 80 to container port 80
     volumes:
@@ -12,13 +10,14 @@ services:  # Define your Docker services/containers here
       - drupal-profiles:/var/www/html/profiles
       - drupal-sites:/var/www/html/sites
       - drupal-themes:/var/www/html/themes  # Mount a local directory into the container
+
   mariadb:
     image: mariadb
     environment:
-      - MARIADB_ROOT_PASSWORD=Pass@word1
+      - MARIADB_ROOT_PASSWORD_FILE=mdb-pw
       - MARIADB_DATABASE=drupal
       - MARIADB_USER=drupal
-      - MARIADB_PASSWORD=Pass@word1
+      - MARIADB_PASSWORD_FILE=mdb-pw
     ports:
       - "3306:3306"
     volumes:
