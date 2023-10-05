@@ -30,3 +30,5 @@ volumes:
   drupal-themes:
   drupal-data:
 
+secrets:
+  mdb-pw: ./pdb-pw
