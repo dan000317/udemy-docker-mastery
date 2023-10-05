@@ -24,7 +24,7 @@ services:
     ports:
       - "80:80"
     deploy:
-      replicas: 2
+      replicas: 1
       placement:
         constraints:
           - node.hostname == worker1
